@@ -1,0 +1,76 @@
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" #modal
+     role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">{{title}}</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <!--        Angular Reactive Form -->
+        <form [formGroup]="studentForm">
+
+          <div class="form-group">
+            <label for="firstNameField">First Name</label>
+<!--            ngClass is used to apply invalid field styling when it is not valid -->
+            <input type="text" class="form-control"
+                   [ngClass]="{'is-invalid': isInvalidControlCondition(studentForm.controls.firstName)}"
+                   id="firstNameField" placeholder="Enter First Name" formControlName="firstName">
+<!--            for showing the validation errors -->
+            <div class="invalid-feedback" *ngIf="isInvalidControlCondition(studentForm.controls.firstName)">
+              {{getErrorsList(studentForm.controls.firstName)}}
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="lastNameField">Last Name</label>
+            <input type="text" class="form-control"
+                   [ngClass]="{'is-invalid': isInvalidControlCondition(studentForm.controls.lastName)}"
+                   id="lastNameField" placeholder="Enter Last Name" formControlName="lastName">
+            <div class="invalid-feedback" *ngIf="isInvalidControlCondition(studentForm.controls.lastName)">
+              {{getErrorsList(studentForm.controls.lastName)}}
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="gradeField">Grade</label>
+            <input type="number" class="form-control"
+                   [ngClass]="{'is-invalid': isInvalidControlCondition(studentForm.controls.grade)}"
+                   id="gradeField" placeholder="Enter Grade" formControlName="grade">
+            <div class="invalid-feedback" *ngIf="isInvalidControlCondition(studentForm.controls.grade)">
+              {{getErrorsList(studentForm.controls.grade)}}
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="birthDateField">Birth Date</label>
+            <input type="date" class="form-control"
+                   [ngClass]="{'is-invalid': isInvalidControlCondition(studentForm.controls.birthDate)}"
+                   id="birthDateField" formControlName="birthDate">
+            <div class="invalid-feedback" *ngIf="isInvalidControlCondition(studentForm.controls.birthDate)">
+              {{getErrorsList(studentForm.controls.birthDate)}}
+            </div>
+          </div>
+
+<!--          <div class="alert alert-danger" *ngIf="studentForm.invalid && (studentForm.dirty || studentForm.touched)">-->
+<!--            <ul>-->
+<!--              <li></li>-->
+<!--            </ul>-->
+<!--          </div>-->
+
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="onSaveChanges()" [disabled]="savingData || studentForm.invalid">
+          <ng-container *ngIf="savingData">
+            Saving Changes...<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          </ng-container>
+          <ng-container *ngIf="!savingData">Save changes</ng-container>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

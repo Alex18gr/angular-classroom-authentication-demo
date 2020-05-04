@@ -1,0 +1,26 @@
+<div class="container-fluid pt-2">
+  <div class="row">
+    <div class="col-md-5 col-sm-12">
+      <div class="card shadow">
+        <div class="card-body">
+          <h3>Classrooms list</h3>
+          <!-- The classroom list component with re received classrooms provided -->
+          <app-classrooms-list [classrooms]="classroomsList" (editSelected)="openEditClassroomModal($event)"
+           (deleteSelected)="openDeleteModal($event)"></app-classrooms-list>
+          <div class="mt-2">
+<!--            create new classroom button that opens the edit classroom modal -->
+            <button class="btn btn-outline-success" (click)="openEditClassroomModal()">Create new classroom</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-7 col-12 col-sm-12">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+
+<!-- The edit and delete classroom modals -->
+<app-classroom-edit-modal #classroomEditModal (editFormSubmitted)="onDataSaved()"></app-classroom-edit-modal>
+<app-delete-modal #deleteModal (editFormSubmitted)="onDataSaved()"></app-delete-modal>

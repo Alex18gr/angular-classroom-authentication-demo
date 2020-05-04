@@ -1,0 +1,32 @@
+<app-loading-spinner *ngIf="!students"></app-loading-spinner>
+<div class="border border-secondary rounded-lg p-3 table-responsive">
+  <table class="table table-sm table-hover" *ngIf="students">
+    <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Grade</th>
+      <th scope="col">Birth Date</th>
+      <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let s of students">
+      <th scope="row">{{s.id}}</th>
+      <td>{{s.firstName}}</td>
+      <td>{{s.lastName}}</td>
+      <td>{{s.grade | number}}</td>
+      <td>{{s.birthDate | date: 'mediumDate'}}</td>
+      <td>
+        <div class="btn-group btn-group-sm" role="group">
+          <button class="btn btn-sm btn-warning" *ngIf="actionsEnabled" (click)="editSelected.emit(s)">Edit</button>
+          <button class="btn btn-sm btn-danger" *ngIf="actionsEnabled" (click)="deleteSelected.emit(s)">Delete</button>
+          <button class="btn btn-sm btn-primary" (click)="onStudentSelected(s)">Details</button>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>

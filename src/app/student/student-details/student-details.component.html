@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="jumbotron">
+        <div *ngIf="dataLoaded">
+          <h3>{{currentStudent.firstName}} {{currentStudent.lastName}}</h3>
+        </div>
+      </div>
+
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <app-loading-spinner *ngIf="!dataLoaded"></app-loading-spinner>
+          <div *ngIf="dataLoaded">
+            <table class="table table-borderless">
+              <tbody>
+                <tr>
+                  <th scope="row">Birth Date</th>
+                  <td>{{currentStudent.birthDate | date: 'mediumDate' }}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Grade</th>
+                  <td>{{currentStudent.grade | number}}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Classroom</th>
+                  <td><a [routerLink]="['/', 'classrooms', currentStudentClassroom.id]">{{currentStudentClassroom.name}}</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="card">
+  <app-loading-spinner *ngIf="!classroom"></app-loading-spinner>
+  <div class="card-body shadow" *ngIf="classroom">
+    <h2>{{classroom.name}}</h2>
+    <hr>
+    <strong>Students List</strong>
+    <app-students-list [students]="classroom.students" (editSelected)="openEditStudentModal($event)"
+                       (deleteSelected)="openDeleteModal($event)" [actionsEnabled]="true"></app-students-list>
+    <div class="mt-2">
+      <button class="btn btn-outline-success" (click)="openEditStudentModal()">Add new Student</button>
+    </div>
+  </div>
+</div>
+
+<!-- These modals are for editing and deleting students, they are showed using view child and jQuery -->
+<app-student-edit-modal #studentEditModal (editFormSubmitted)="onDataSaved()"></app-student-edit-modal>
+<app-delete-modal #deleteModal (editFormSubmitted)="onDataSaved()"></app-delete-modal>
