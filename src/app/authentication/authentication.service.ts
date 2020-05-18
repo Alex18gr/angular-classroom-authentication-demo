@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import * as Keycloak from "keycloak-js";
-import {KeycloakInstance} from "keycloak-js";
 import {
   EventTypes,
   LogLevel,
@@ -18,7 +16,6 @@ import {filter, map, switchMap} from "rxjs/operators";
 })
 export class AuthenticationService {
 
-  private keycloak: KeycloakInstance;
   configuration: PublicConfiguration;
   userDataChanged$: Observable<OidcClientNotification<any>>;
   userData$: Observable<any>;
@@ -33,31 +30,8 @@ export class AuthenticationService {
       .pipe(filter((notification) => notification.type === EventTypes.ConfigLoaded))
       .subscribe((config) => {
         console.log('ConfigLoaded', config);
-
-        // this.initialize();
       });
 
-    // this.keycloak = Keycloak({
-    //   url: 'http://localhost:8095/auth',
-    //   realm: 'master',
-    //   clientId: 'uiPlatformClient'
-    // });
-    //
-    // this.keycloak.init({
-    //   onLoad: 'login-required',
-    //   flow: 'implicit'
-    // });
-    // this.configuration = this.oidcSecurityService.configuration;
-    // this.userData$ = this.oidcSecurityService.userData$;
-    // this.isAuthenticated$ = this.oidcSecurityService.isAuthenticated$;
-    // this.oidcSecurityService.checkAuth().subscribe((isAuthenticated) => {
-    //   console.log('app authenticated', isAuthenticated);
-    //   this.isAuthenticated = isAuthenticated;
-    // });
-    //
-    // this.oidcSecurityService.userData$.subscribe(userData => {
-    //   this.userData = userData;
-    // });
   }
 
   login() {
@@ -114,6 +88,7 @@ export function configureAuth(oidcConfigService: OidcConfigService) {
     });
 }
 
+// not used
 export function configureAuthHttp(oidcConfigService: OidcConfigService, httpClient: HttpClient) {
   const setupAction$ = httpClient.get<any>(`http://localhost:8095/auth/realms/master/.well-known/openid-configuration`).pipe(
     map((customConfig) => {
