@@ -6,12 +6,23 @@
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
 <!--    The menu of the navbar -->
-    <ul class="navbar-nav">
+    <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" routerLink="classrooms" routerLinkActive="active">Classrooms</a>
+        <a class="nav-link" routerLink="/classrooms" routerLinkActive="active">Classrooms</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="students" routerLinkActive="active">Students</a>
+        <a class="nav-link" routerLink="/students" routerLinkActive="active">Students</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link" href="" data-toggle="dropdown"><fa-icon [icon]="navbarUserIcon"></fa-icon></a>
+        <div class="dropdown-menu dropdown-menu-right">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
       </li>
     </ul>
   </div>
