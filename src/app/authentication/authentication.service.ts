@@ -83,7 +83,7 @@ export function configureAuth(oidcConfigService: OidcConfigService) {
       useRefreshToken: true,
       ignoreNonceAfterRefresh: true,
       // silentRenewUrl: `${window.location.origin}`,
-      logLevel: LogLevel.Debug,
+      // logLevel: LogLevel.Debug,
       autoUserinfo: true
     });
 }
